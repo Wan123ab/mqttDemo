@@ -51,11 +51,11 @@
 			var hostname = '127.0.0.1',
 				/*IOS 安卓等客户端可以直接使用 1883端口，但是web是通过 8083和 8084端口进行通讯的*/
 			    port = 8083,
-			    clientId = 'client-'+Math.floor(Math.random()*10),
+			    clientId = 'client-'+Math.floor(Math.random()*100),
 			    timeout = 5,
-			    keepAlive = 50,  
-			    cleanSession = false,  
-			    ssl = false,  
+			    keepAlive = 50,
+			    cleanSession = false,
+			    ssl = false,
 			    userName = 'admin',
 			    password = 'public';
 
@@ -84,7 +84,7 @@
 
 			//连接服务器并注册连接成功处理事件  
 			function onConnect() {  
-                toastr.success('连接成功，开始订阅主题并处理事件！');
+                toastr.success('连接成功，当前clientId为'+clientId+',开始订阅主题并处理事件！');
 
                 var topic = document.getElementById("topic1").value;
 			    client.subscribe(topic);
@@ -107,14 +107,21 @@
 			
 			function onMessageArrived(message) {
 			    var msg = message.payloadString;
-			    console.log("收到消息:"+msg);
-                toastr.info("收到消息:"+msg);
 
-			    msg = new Date().Format("yyyy-MM-dd hh:mm:ss") +"    "+ msg;
+                var msgJson = JSON.parse(msg);
+                //根据消息中的clientId匹配，实现点对点通信
+			    if(msgJson.clientId == clientId){
 
-			    var html = "<input id=\"txt\" value='"+msg+"'  /><br>";
+                    console.log("收到消息:"+msg);
+                    toastr.info("收到消息:"+msg);
 
-			    $('#txt').append(html);
+                    msg = new Date().Format("yyyy-MM-dd hh:mm:ss") +"   "+ msgJson.content;
+
+                    var html = "<input id=\"txt\" value='"+msg+"'  /><br>";
+
+                    $('#txt').append(html);
+				}
+
 			}
 
 			//连接服务端
@@ -135,9 +142,16 @@
 			function send(){
 				var s = document.getElementById("msg").value;
 				var topic = document.getElementById("topic2").value;
+				var id = document.getElementById("clientId").value;
 				if(s){
-					message = new Paho.MQTT.Message(s);
+				    //构建消息体
+				    var msg = {'content':s,'clientId':id};
+
+					message = new Paho.MQTT.Message(JSON.stringify(msg));
 			    	message.destinationName = topic;
+			    	if (id){
+                        message.id = id;
+					}
 			   	 	client.send(message);
 			   	 	document.getElementById("msg").value = "";
 				}
@@ -185,6 +199,7 @@
 		<input type="button" class="btn btn-danger" value="断开连接" onclick="disconnect()"/>
 
 		<p>目标主题: <input type="text" size="35" id="topic2" /></p>
+		<p>目标客户端（非必填）: <input type="text" size="35" id="clientId" /></p>
 
 		<br>
 		<input type="text" id="msg"/>
