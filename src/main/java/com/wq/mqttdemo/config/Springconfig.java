@@ -115,7 +115,7 @@ public class Springconfig {
     @Bean
     public MessageProducer inbound() {
         MqttPahoMessageDrivenChannelAdapter adapter = new MqttPahoMessageDrivenChannelAdapter(clientId + "_inbound",
-                mqttClientFactory(), "topic1", "topic2");
+                mqttClientFactory(), "topic1", "topic2","sysLog");
         adapter.setCompletionTimeout(completionTimeout);
         adapter.setConverter(new DefaultPahoMessageConverter());
         adapter.setQos(1);
@@ -136,6 +136,8 @@ public class Springconfig {
                 logger.info("客户端1监听到topic1消息={}",payload);
             } else if (topic.equals("topic2")) {
                 logger.info("客户端1监听到topic2消息={}",payload);
+            } else if (topic.equals("sysLog")) {
+                logger.info("客户端1监听到sysLog日志消息={}",payload);
             } else {
                 System.out.println(topic + ": 丢弃消息 " + payload);
             }
@@ -155,7 +157,7 @@ public class Springconfig {
     public MessageProducer inbound1() {
         MqttPahoMessageDrivenChannelAdapter adapter =
                 new MqttPahoMessageDrivenChannelAdapter(clientId+"_inbound1", mqttClientFactory(),
-                        "topic1", "topic2");
+                        "topic1", "topic2","sysLog");
         adapter.setCompletionTimeout(completionTimeout);
         adapter.setConverter(new DefaultPahoMessageConverter());
         adapter.setQos(1);
@@ -177,6 +179,8 @@ public class Springconfig {
                 logger.info("客户端2监听到topic1消息={}",payload);
             } else if (topic.equals("topic2")) {
                 logger.info("客户端2监听到topic2消息={}",payload);
+            } else if (topic.equals("sysLog")) {
+                logger.info("客户端2监听到sysLog日志消息={}",payload);
             } else {
                 System.out.println(topic + ": 丢弃消息 " + payload);
             }

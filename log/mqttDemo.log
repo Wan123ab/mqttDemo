@@ -1,0 +1,37 @@
+2019-04-25 08:43:16 ERROR 13508 --- [main] o.s.b.c.l.LoggingApplicationListener     : Cannot set level 'debug,MQTT' for 'com.wq'
+2019-04-25 08:43:16  INFO 13508 --- [main] com.wq.mqttdemo.MqttdemoApplication      : Starting MqttdemoApplication on DESKTOP-GROU3S5 with PID 13508 (C:\Users\DELL\IdeaProjects\mqttdemo\target\classes started by DELL in C:\Users\DELL\IdeaProjects\mqttdemo)
+2019-04-25 08:43:16  INFO 13508 --- [main] com.wq.mqttdemo.MqttdemoApplication      : No active profile set, falling back to default profiles: default
+2019-04-25 08:43:17  INFO 13508 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2019-04-25 08:43:17  INFO 13508 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+2019-04-25 08:43:17  INFO 13508 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2019-04-25 08:43:17  INFO 13508 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration$$EnhancerBySpringCGLIB$$4638b6f9] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-04-25 08:43:17  INFO 13508 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationDisposableAutoCreatedBeans' of type [org.springframework.integration.config.annotation.Disposables] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-04-25 08:43:17  INFO 13508 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8000 (http)
+2019-04-25 08:43:17  INFO 13508 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-04-25 08:43:17  INFO 13508 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-04-25 08:43:17  INFO 13508 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-04-25 08:43:17  INFO 13508 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1079 ms
+2019-04-25 08:43:18  INFO 13508 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2019-04-25 08:43:18  INFO 13508 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-04-25 08:43:18  WARN 13508 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2019-04-25 08:43:18  INFO 13508 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2019-04-25 08:43:18  INFO 13508 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2019-04-25 08:43:18  INFO 13508 --- [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'application.errorChannel' has 1 subscriber(s).
+2019-04-25 08:43:18  INFO 13508 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started _org.springframework.integration.errorLogger
+2019-04-25 08:43:18  INFO 13508 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {message-handler:springconfig.handler.serviceActivator} as a subscriber to the 'mqttInputChannel' channel
+2019-04-25 08:43:18  INFO 13508 --- [main] o.s.integration.channel.DirectChannel    : Channel 'application.mqttInputChannel' has 1 subscriber(s).
+2019-04-25 08:43:18  INFO 13508 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started springconfig.handler.serviceActivator
+2019-04-25 08:43:18  INFO 13508 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {message-handler:springconfig.handler1.serviceActivator} as a subscriber to the 'mqttInputChannel1' channel
+2019-04-25 08:43:18  INFO 13508 --- [main] o.s.integration.channel.DirectChannel    : Channel 'application.mqttInputChannel1' has 1 subscriber(s).
+2019-04-25 08:43:18  INFO 13508 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started springconfig.handler1.serviceActivator
+2019-04-25 08:43:18  INFO 13508 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {message-handler:springconfig.outbound.serviceActivator} as a subscriber to the 'mqttOutboundChannel' channel
+2019-04-25 08:43:18  INFO 13508 --- [main] o.s.integration.channel.DirectChannel    : Channel 'application.mqttOutboundChannel' has 1 subscriber(s).
+2019-04-25 08:43:18  INFO 13508 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started springconfig.outbound.serviceActivator
+2019-04-25 08:43:18  INFO 13508 --- [main] ProxyFactoryBean$MethodInvocationGateway : started springconfig$MqttGateway
+2019-04-25 08:43:18  INFO 13508 --- [main] ProxyFactoryBean$MethodInvocationGateway : started springconfig$MqttGateway
+2019-04-25 08:43:18  INFO 13508 --- [main] ProxyFactoryBean$MethodInvocationGateway : started springconfig$MqttGateway
+2019-04-25 08:43:18  INFO 13508 --- [main] o.s.i.gateway.GatewayProxyFactoryBean    : started springconfig$MqttGateway
+2019-04-25 08:43:18  INFO 13508 --- [main] .m.i.MqttPahoMessageDrivenChannelAdapter : started inbound
+2019-04-25 08:43:18  INFO 13508 --- [main] .m.i.MqttPahoMessageDrivenChannelAdapter : started inbound1
+2019-04-25 08:43:18  INFO 13508 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8000 (http) with context path ''
+2019-04-25 08:43:18  INFO 13508 --- [main] com.wq.mqttdemo.MqttdemoApplication      : Started MqttdemoApplication in 2.225 seconds (JVM running for 3.462)

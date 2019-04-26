@@ -108,19 +108,14 @@
 			function onMessageArrived(message) {
 			    var msg = message.payloadString;
 
-                var msgJson = JSON.parse(msg);
-                //根据消息中的clientId匹配，实现点对点通信
-			    if(msgJson.clientId == clientId){
+				console.log("收到消息:"+msg);
+				toastr.info("收到消息:"+msg);
 
-                    console.log("收到消息:"+msg);
-                    toastr.info("收到消息:"+msg);
+				msg = new Date().Format("yyyy-MM-dd hh:mm:ss") +"   "+ msg;
 
-                    msg = new Date().Format("yyyy-MM-dd hh:mm:ss") +"   "+ msgJson.content;
+				var html = "<input id=\"txt\" value='"+msg+"'  /><br>";
 
-                    var html = "<input id=\"txt\" value='"+msg+"'  /><br>";
-
-                    $('#txt').append(html);
-				}
+				$('#txt').append(html);
 
 			}
 
@@ -199,7 +194,6 @@
 		<input type="button" class="btn btn-danger" value="断开连接" onclick="disconnect()"/>
 
 		<p>目标主题: <input type="text" size="35" id="topic2" /></p>
-		<p>目标客户端（非必填）: <input type="text" size="35" id="clientId" /></p>
 
 		<br>
 		<input type="text" id="msg"/>
